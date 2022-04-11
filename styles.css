@@ -1,0 +1,200 @@
+:root {
+    --row_cols: 10;
+    --cell-size: 50px;
+}
+
+body {
+    background-color: rgb(196, 196, 196);
+    background: linear-gradient(to left, #1d104d, #08031a);
+}
+
+header {
+    color: white;
+    font-size: 50px;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--row_cols), var(--cell-size));
+    grid-template-rows: repeat(var(--row_cols), var(--cell-size));
+    border: 4px solid rgb(75, 99, 74);
+}
+
+[id^='cell'] {
+    border: 1px solid rgb(75, 99, 74);
+    background-color: rgb(119, 116, 116);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(var(--cell-size)/2);
+}
+
+[id^='cell']:hover {
+    background-color: rgb(77, 77, 77);
+}
+
+.mines {
+    color: white;
+    font-size: 30px;
+    margin-top: 10px;
+    display: none;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
+}
+
+.open-modal {
+    animation: show-modal 1s linear forwards;
+}
+
+@keyframes show-modal {
+    80% {
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.close-modal {
+    opacity: 1;
+    transform: scale(1);
+    animation: hide-modal 1s linear forwards;
+}
+
+@keyframes hide-modal {
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(180deg,#3e0a87,#0d24f7);
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
+.mines-select {
+    margin: 20px auto;
+}
+
+#start-btn {
+    background-color: rgb(40, 190, 255);
+    color: black;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    transition-duration: .5s;
+    padding: 5px 10px;
+}
+
+#start-btn:hover {
+    background-color: rgb(40, 190, 255);
+    color: white;
+}
+
+#start-btn:focus {
+    box-shadow: 0 0 3px 3px rgb(40, 190, 255);
+}
+
+#mines-number {
+    font-size: 16px;
+    outline: none;
+}
+
+.info {
+    background-color: rgb(40, 190, 255);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    margin: 5px auto;
+}
+
+@media only screen and (max-width:550px) {
+    :root {
+        --cell-size: 40px
+    }
+    header {
+        font-size: 40px;
+    }
+}
+
+@media only screen and (max-width:450px) {
+    :root {
+        --cell-size: 30px
+    }
+    header {
+        font-size: 30px;
+    }
+    .mines {
+        font-size: 20px;
+    }
+}
+
+#hold {
+    display: none;
+}
+
+@media only screen and (max-width:800px) {
+    #right-click {
+        display: none;
+    }
+    #hold {
+        display: inline;
+    }
+}
+
+#msg {
+    font-weight: bold;
+}
+
+.show-cell {
+    color: rgba(0, 0, 0, 0);
+    background-color: rgb(119, 116, 116);
+    animation: cell-animate .5s linear forwards;
+}
+
+@keyframes cell-animate {
+    to {
+        color: rgba(0, 0, 0, 1);
+        background-color: rgba(230, 230, 230);
+    }
+}
+
+.show-bomb {
+    animation: bomb-animate .5s linear forwards;
+}
+
+@keyframes bomb-animate {
+    20% {
+        font-size: calc(var(--cell-size)/2 * 1.3);
+    }
+    100% {
+        font-size: calc(var(--cell-size)/2);
+    }
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="mine.png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <title>Minesweeper</title>
+</head>
+<body>
+    <div class="game-area">
+        <header>Minesweeper</header>
+        <main>
+            <div class="game-grid"></div>
+            <div class="mines">
+                Total Mines: 
+                <span id="mines-left"></span>
+            </div>
+            <div class="info">
+                <span id="right-click">Right click</span>
+                <span id="hold">Hold</span> on a cell to flag &#128681;
+            </div>
+        </main>
+    </div>
+    <div class="modal">
+        <div class="content">
+            <div id="msg">New Game</div>
+            <div class="mines-select">
+                <label for="mines-number" style="margin-right: 20px;">Difficulty</label>
+                <select name="mines-number" id="mines-number" onchange="fixMines()">
+                    <option value="10" style="color: rgb(50, 205, 89);">Easy</option>
+                    <option value="15" style="color: rgb(207, 191, 41);">Medium</option>
+                    <option value="20" style="color: rgb(255, 38, 38);">Hard</option>
+                    <option value="25" style="color: rgb(1, 1, 97);">Advanced</option>
+                </select>
+            </div>
+            <div class="btn">
+                <button id="start-btn" onclick="startGame()">Start</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
